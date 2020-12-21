@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SH_OBD_WPF", "SH_OBD_WPF\SH_OBD_WPF.csproj", "{26544233-3F34-42A9-B3DA-2901B91BCFF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26544233-3F34-42A9-B3DA-2901B91BCFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26544233-3F34-42A9-B3DA-2901B91BCFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26544233-3F34-42A9-B3DA-2901B91BCFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26544233-3F34-42A9-B3DA-2901B91BCFF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB65B331-7B2F-4CF7-8CE6-59DCF0A0381D}
+	EndGlobalSection
+EndGlobal
