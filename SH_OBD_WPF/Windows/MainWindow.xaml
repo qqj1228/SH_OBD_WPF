@@ -6,8 +6,8 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SH_OBD_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" Loaded="Window_Loaded" Icon="icon.ico" WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged">
-    <Grid x:Name="gdContainer">
+        Title="新车下线OBD检测系统" Height="600" Width="800" Loaded="Window_Loaded" Icon="icon.ico" WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged" Activated="Window_Activated" Closing="Window_Closing">
+    <Grid x:Name="gdContainer" FocusManager.IsFocusScope="True">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="#FF3399FF" Offset="1"/>
@@ -35,8 +35,8 @@
         <Viewbox Grid.Row="2">
             <TextBlock Margin="4" TextWrapping="Wrap" Text="车型:"/>
         </Viewbox>
-        <hc:TextBox x:Name="txtBoxVIN" Grid.Row="1" Grid.Column="1" Margin="10" Text="12345678901234567" FontSize="56" CharacterCasing="Upper" TextAlignment="Center"/>
-        <hc:TextBox x:Name="txtBoxVehicleType" Grid.Column="1" Margin="10" Grid.Row="2" Text="VEHICLETYPE" FontSize="56" CharacterCasing="Upper" TextAlignment="Center"/>
+        <hc:TextBox x:Name="txtBoxVIN" Grid.Row="1" Grid.Column="1" Margin="10" FontSize="50" CharacterCasing="Upper" TextAlignment="Center" hc:InfoElement.Placeholder="扫描或输入VIN号" PreviewTextInput="TxtBox_PreviewTextInput"/>
+        <hc:TextBox x:Name="txtBoxVehicleType" Grid.Column="1" Margin="10" Grid.Row="2" FontSize="50" CharacterCasing="Upper" TextAlignment="Center" hc:InfoElement.Placeholder="扫描或输入车型" PreviewTextInput="TxtBox_PreviewTextInput"/>
         <TextBlock x:Name="txtBlkResult" Grid.Row="3" Grid.ColumnSpan="2" Margin="10" TextWrapping="Wrap" Text="OBD检测结果" FontSize="56" TextAlignment="Center" VerticalAlignment="Center"/>
         <Grid Grid.ColumnSpan="2" Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -72,9 +72,9 @@
                     </TextBlock>
                 </Viewbox>
             </Border>
-            <Button  x:Name="btnAdvMode" Grid.Column="3" Style="{StaticResource ButtonPrimary}" Effect="{StaticResource EffectShadow2}" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto">
+            <Button x:Name="btnAdvMode" Grid.Column="3" Style="{StaticResource ButtonPrimary}" Effect="{StaticResource EffectShadow2}" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Click="BtnAdvMode_Click">
                 <Viewbox>
-                    <TextBlock TextWrapping="Wrap" Text="高级模式" Margin="5"/>
+                    <TextBlock TextWrapping="Wrap" Text="高级模式" Margin="6"/>
                 </Viewbox>
             </Button>
         </Grid>

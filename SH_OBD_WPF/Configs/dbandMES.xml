@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DBandMES xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <UserName>sa</UserName>
+  <PassWord>sh49</PassWord>
+  <DBName>SH_OBD</DBName>
+  <IP>127.0.0.1</IP>
+  <Port>1433</Port>
+  <WSMES>
+    <Enable>false</Enable>
+    <Address>http://localhost:53827/webservicedemo.asmx?wsdl</Address>
+    <Name>WebServiceDemo</Name>
+    <Methods>WriteDataToMes</Methods>
+    <WSDL />
+    <UseURL>true</UseURL>
+  </WSMES>
+  <OraMES>
+    <Enable>false</Enable>
+    <Host>192.168.1.49</Host>
+    <Port>1521</Port>
+    <ServiceName>XE</ServiceName>
+    <UserID>c##scott</UserID>
+    <PassWord>tiger</PassWord>
+  </OraMES>
+</DBandMES>

@@ -1,0 +1,21 @@
+﻿<Window xmlns:hc="https://handyorg.github.io/handycontrol"  x:Class="SH_OBD_WPF.PwdWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SH_OBD_WPF"
+        mc:Ignorable="d"
+        Title="输入管理员密码" Height="200" Width="300" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize" FontSize="22" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Window.Background>
+        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}"/>
+    </Window.Background>
+    <Grid>
+        <StackPanel>
+            <hc:TextBox x:Name="txtBoxPwd" Style="{StaticResource TextBoxExtend}" Margin="10,10,10,0" hc:InfoElement.Title="请输入管理员密码：" hc:InfoElement.Placeholder="管理员密码"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource ButtonDanger}" Content="取消" Margin="10,10,0,10" Width="120" FontSize="22" Height="40" IsCancel="True"></Button>
+                <Button Style="{StaticResource ButtonPrimary}" Content="确定" Margin="10" Width="121" FontSize="22" Height="40" IsDefault="True" Click="Button_Click"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
