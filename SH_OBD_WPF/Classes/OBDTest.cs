@@ -23,6 +23,7 @@ namespace SH_OBD_Main {
         public event Action SetupColumnsDone;
         public event Action WriteDbStart;
         public event Action WriteDbDone;
+        public event Action ReadDataFromDBDone;
         public event EventHandler<SetDataTableColumnsErrorEventArgs> SetDataTableColumnsError;
 
         public ModelLocal DbLocal { get; }
@@ -251,7 +252,7 @@ namespace SH_OBD_Main {
                     if (dt.Columns[i].ColumnName == value.ECUResponseID) {
                         if (supported) {
                             if (dr[1].ToString().Length == 0) {
-                                dr[1] = "符合监测条件次数".PadLeft(padTotal + 8);
+                                dr[1] = "符合监测条件次数".PadLeft(padTotal + 15);
                             }
                             foreach (string name in value.Message.Signals.Keys) {
                                 if (name == sigName.Replace("COMP", "COND")) {
@@ -273,7 +274,7 @@ namespace SH_OBD_Main {
                     if (dt.Columns[i].ColumnName == value.ECUResponseID) {
                         if (supported) {
                             if (dr[1].ToString().Length == 0) {
-                                dr[1] = "IUPR率".PadLeft(padTotal + 5);
+                                dr[1] = "IUPR率".PadLeft(padTotal + 12);
                             }
                             if (den == 0) {
                                 dr[i] = "7.99527";
@@ -531,13 +532,13 @@ namespace SH_OBD_Main {
                 supported = supported && _obdIfEx.OBDDll.Mode09Support[dt.Columns[i].ColumnName][param.Parameter - HByte - 1];
                 if (supported) {
                     valueList = _obdIfEx.OBDIf.GetValueList(param);
-                    SetIUPRDataRow(++NO, "NMHC催化器", 18, 12, dt, valueList, "HCCATCOMP", supported);
-                    SetIUPRDataRow(++NO, "NOx催化器", 18, 11, dt, valueList, "NCATCOMP", supported);
-                    SetIUPRDataRow(++NO, "NOx吸附器", 18, 11, dt, valueList, "NADSCOMP", supported);
+                    SetIUPRDataRow(++NO, "NMHC催化器", 18, 16, dt, valueList, "HCCATCOMP", supported);
+                    SetIUPRDataRow(++NO, "NOx催化器", 18, 12, dt, valueList, "NCATCOMP", supported);
+                    SetIUPRDataRow(++NO, "NOx吸附器", 18, 12, dt, valueList, "NADSCOMP", supported);
                     SetIUPRDataRow(++NO, "PM捕集器", 18, 10, dt, valueList, "PMCOMP", supported);
                     SetIUPRDataRow(++NO, "废气传感器", 18, 12, dt, valueList, "EGSCOMP", supported);
-                    SetIUPRDataRow(++NO, "EGR和VVT", 18, 10, dt, valueList, "EGRCOMP", supported);
-                    SetIUPRDataRow(++NO, "增压压力", 18, 10, dt, valueList, "BPCOMP", supported);
+                    SetIUPRDataRow(++NO, "EGR和VVT", 18, 12, dt, valueList, "EGRCOMP", supported);
+                    SetIUPRDataRow(++NO, "增压压力", 18, 8, dt, valueList, "BPCOMP", supported);
                 }
                 // 火花点火
                 NO = 0;
@@ -546,16 +547,16 @@ namespace SH_OBD_Main {
                 supported = supported && _obdIfEx.OBDDll.Mode09Support[dt.Columns[i].ColumnName][param.Parameter - HByte - 1];
                 if (supported) {
                     valueList = _obdIfEx.OBDIf.GetValueList(param);
-                    SetIUPRDataRow(++NO, "催化器 组1", 18, 12, dt, valueList, "CATCOMP1", supported);
-                    SetIUPRDataRow(++NO, "催化器 组2", 18, 12, dt, valueList, "CATCOMP2", supported);
-                    SetIUPRDataRow(++NO, "前氧传感器 组1", 18, 16, dt, valueList, "O2SCOMP1", supported);
-                    SetIUPRDataRow(++NO, "前氧传感器 组2", 18, 16, dt, valueList, "O2SCOMP2", supported);
-                    SetIUPRDataRow(++NO, "后氧传感器 组1", 18, 16, dt, valueList, "SO2SCOMP1", supported);
-                    SetIUPRDataRow(++NO, "后氧传感器 组2", 18, 16, dt, valueList, "SO2SCOMP2", supported);
-                    SetIUPRDataRow(++NO, "EVAP", 18, 6, dt, valueList, "EVAPCOMP", supported);
-                    SetIUPRDataRow(++NO, "EGR和VVT", 18, 10, dt, valueList, "EGRCOMP", supported);
-                    SetIUPRDataRow(++NO, "GPF 组1", 18, 9, dt, valueList, "PFCOMP1", supported);
-                    SetIUPRDataRow(++NO, "GPF 组2", 18, 9, dt, valueList, "PFCOMP2", supported);
+                    SetIUPRDataRow(++NO, "催化器 组1", 18, 11, dt, valueList, "CATCOMP1", supported);
+                    SetIUPRDataRow(++NO, "催化器 组2", 18, 11, dt, valueList, "CATCOMP2", supported);
+                    SetIUPRDataRow(++NO, "前氧传感器 组1", 18, 18, dt, valueList, "O2SCOMP1", supported);
+                    SetIUPRDataRow(++NO, "前氧传感器 组2", 18, 18, dt, valueList, "O2SCOMP2", supported);
+                    SetIUPRDataRow(++NO, "后氧传感器 组1", 18, 18, dt, valueList, "SO2SCOMP1", supported);
+                    SetIUPRDataRow(++NO, "后氧传感器 组2", 18, 18, dt, valueList, "SO2SCOMP2", supported);
+                    SetIUPRDataRow(++NO, "EVAP", 18, 4, dt, valueList, "EVAPCOMP", supported);
+                    SetIUPRDataRow(++NO, "EGR和VVT", 18, 12, dt, valueList, "EGRCOMP", supported);
+                    SetIUPRDataRow(++NO, "GPF 组1", 18, 8, dt, valueList, "PFCOMP1", supported);
+                    SetIUPRDataRow(++NO, "GPF 组2", 18, 8, dt, valueList, "PFCOMP2", supported);
                     SetIUPRDataRow(++NO, "二次空气喷射系统", 18, 18, dt, valueList, "AIRCOMP", supported);
                 }
             }
@@ -836,7 +837,7 @@ namespace SH_OBD_Main {
             return moduleID;
         }
 
-        private void SetDataTableColumnsFromDB(DataTable dtDisplay, DataTable dtIn) {
+        private bool SetDataTableColumnsFromDB(DataTable dtDisplay, DataTable dtIn) {
             dtDisplay.Clear();
             dtDisplay.Columns.Clear();
             if (dtIn.Rows.Count > 0) {
@@ -845,11 +846,13 @@ namespace SH_OBD_Main {
                 for (int i = 0; i < dtIn.Rows.Count; i++) {
                     dtDisplay.Columns.Add(new DataColumn(dtIn.Rows[i]["ECU_ID"].ToString(), typeof(string)));
                 }
+                return true;
             } else {
                 SetDataTableColumnsErrorEventArgs args = new SetDataTableColumnsErrorEventArgs {
                     ErrorMsg = "从数据库中未获取到数据"
                 };
                 SetDataTableColumnsError?.Invoke(this, args);
+                return false;
             }
         }
 
@@ -908,7 +911,7 @@ namespace SH_OBD_Main {
 
             dr = _dtIUPR.NewRow();
             if (dr[1].ToString().Length == 0) {
-                dr[1] = "符合监测条件次数".PadLeft(padTotal + 8);
+                dr[1] = "符合监测条件次数".PadLeft(padTotal + 15);
             }
             for (int i = 0; i < dtIn.Rows.Count; i++) {
                 dr[i + 2] = dtIn.Rows[i][colIndex + 1].ToString();
@@ -919,7 +922,7 @@ namespace SH_OBD_Main {
 
             dr = _dtIUPR.NewRow();
             if (dr[1].ToString().Length == 0) {
-                dr[1] = "IUPR率".PadLeft(padTotal + 5);
+                dr[1] = "IUPR率".PadLeft(padTotal + 12);
             }
             for (int i = 0; i < dtIn.Rows.Count; i++) {
                 if (dens[i] == 0) {
@@ -991,52 +994,55 @@ namespace SH_OBD_Main {
             bool bCompIgnIUPR = GetCompIgnIUPR(dtIn);
             if (bCompIgnIUPR) {
                 // 压缩点火
-                SetDataRowIUPRFromDB(++NO, "NMHC催化器", 18, 12, dtIn, bCompIgnIUPR);  // 1,24
-                SetDataRowIUPRFromDB(++NO, "NOx催化器", 18, 11, dtIn, bCompIgnIUPR);   // 2,26
-                SetDataRowIUPRFromDB(++NO, "NOx吸附器", 18, 11, dtIn, bCompIgnIUPR);   // 3,28
+                SetDataRowIUPRFromDB(++NO, "NMHC催化器", 18, 16, dtIn, bCompIgnIUPR);  // 1,24
+                SetDataRowIUPRFromDB(++NO, "NOx催化器", 18, 12, dtIn, bCompIgnIUPR);   // 2,26
+                SetDataRowIUPRFromDB(++NO, "NOx吸附器", 18, 12, dtIn, bCompIgnIUPR);   // 3,28
                 SetDataRowIUPRFromDB(++NO, "PM捕集器", 18, 10, dtIn, bCompIgnIUPR);    // 4,30
                 SetDataRowIUPRFromDB(++NO, "废气传感器", 18, 12, dtIn, bCompIgnIUPR);  // 5,32
-                SetDataRowIUPRFromDB(++NO, "EGR和VVT", 18, 10, dtIn, bCompIgnIUPR);   // 6,34
-                SetDataRowIUPRFromDB(++NO, "增压压力", 18, 10, dtIn, bCompIgnIUPR);   // 7,36
+                SetDataRowIUPRFromDB(++NO, "EGR和VVT", 18, 12, dtIn, bCompIgnIUPR);   // 6,34
+                SetDataRowIUPRFromDB(++NO, "增压压力", 18, 8, dtIn, bCompIgnIUPR);     // 7,36
             } else {
                 // 火花点火
                 NO = 0;
-                SetDataRowIUPRFromDB(++NO, "催化器 组1", 18, 12, dtIn, bCompIgnIUPR);       // 1,2
-                SetDataRowIUPRFromDB(++NO, "催化器 组2", 18, 12, dtIn, bCompIgnIUPR);       // 2,4
-                SetDataRowIUPRFromDB(++NO, "前氧传感器 组1", 18, 16, dtIn, bCompIgnIUPR);   // 3,6
-                SetDataRowIUPRFromDB(++NO, "前氧传感器 组2", 18, 16, dtIn, bCompIgnIUPR);   // 4,8
-                SetDataRowIUPRFromDB(++NO, "后氧传感器 组1", 18, 16, dtIn, bCompIgnIUPR);   // 5,10
-                SetDataRowIUPRFromDB(++NO, "后氧传感器 组2", 18, 16, dtIn, bCompIgnIUPR);   // 6,12
-                SetDataRowIUPRFromDB(++NO, "EVAP", 18, 6, dtIn, bCompIgnIUPR);             // 7,14
-                SetDataRowIUPRFromDB(++NO, "EGR和VVT", 18, 10, dtIn, bCompIgnIUPR);        // 8,16
-                SetDataRowIUPRFromDB(++NO, "GPF 组1", 18, 9, dtIn, bCompIgnIUPR);          // 9,18
-                SetDataRowIUPRFromDB(++NO, "GPF 组2", 18, 9, dtIn, bCompIgnIUPR);          // 10,20
+                SetDataRowIUPRFromDB(++NO, "催化器 组1", 18, 11, dtIn, bCompIgnIUPR);       // 1,2
+                SetDataRowIUPRFromDB(++NO, "催化器 组2", 18, 11, dtIn, bCompIgnIUPR);       // 2,4
+                SetDataRowIUPRFromDB(++NO, "前氧传感器 组1", 18, 18, dtIn, bCompIgnIUPR);   // 3,6
+                SetDataRowIUPRFromDB(++NO, "前氧传感器 组2", 18, 18, dtIn, bCompIgnIUPR);   // 4,8
+                SetDataRowIUPRFromDB(++NO, "后氧传感器 组1", 18, 18, dtIn, bCompIgnIUPR);   // 5,10
+                SetDataRowIUPRFromDB(++NO, "后氧传感器 组2", 18, 18, dtIn, bCompIgnIUPR);   // 6,12
+                SetDataRowIUPRFromDB(++NO, "EVAP", 18, 4, dtIn, bCompIgnIUPR);             // 7,14
+                SetDataRowIUPRFromDB(++NO, "EGR和VVT", 18, 12, dtIn, bCompIgnIUPR);        // 8,16
+                SetDataRowIUPRFromDB(++NO, "GPF 组1", 18, 8, dtIn, bCompIgnIUPR);          // 9,18
+                SetDataRowIUPRFromDB(++NO, "GPF 组2", 18, 8, dtIn, bCompIgnIUPR);          // 10,20
                 SetDataRowIUPRFromDB(++NO, "二次空气喷射系统", 18, 18, dtIn, bCompIgnIUPR); // 11,22
             }
         }
 
-        public void ShowDataFromDB(string strVIN, out string errorMsg) {
-            errorMsg = "";
+        public void ShowDataFromDB(string strVIN) {
+            bool bRet = true;
             DataTable dt = new DataTable("OBDData");
             DbLocal.GetEmptyTable(dt);
             dt.Columns.Remove("ID");
             dt.Columns.Remove("WriteTime");
             Dictionary<string, string> whereDic = new Dictionary<string, string> { { "VIN", strVIN } };
             DbLocal.GetRecords(dt, whereDic);
-            SetDataTableColumnsFromDB(_dtInfo, dt);
-            SetDataTableColumnsFromDB(_dtECUInfo, dt);
+            bRet &= SetDataTableColumnsFromDB(_dtInfo, dt);
+            bRet &= SetDataTableColumnsFromDB(_dtECUInfo, dt);
 
             DataTable dtIUPR = new DataTable("OBDIUPR");
             DbLocal.GetEmptyTable(dtIUPR);
             dtIUPR.Columns.Remove("ID");
             dtIUPR.Columns.Remove("WriteTime");
             DbLocal.GetRecords(dtIUPR, whereDic);
-            SetDataTableColumnsFromDB(_dtIUPR, dtIUPR);
+            bRet &= SetDataTableColumnsFromDB(_dtIUPR, dtIUPR);
 
-            SetupColumnsDone?.Invoke();
             SetDataTableInfoFromDB(dt);
             SetDataTableECUInfoFromDB(dt);
             SetDataTableIUPRFromDB(dtIUPR);
+            // bRet为false的话，会Invoke错误通知事件
+            if (bRet) {
+                ReadDataFromDBDone?.Invoke();
+            }
             dt.Dispose();
         }
 

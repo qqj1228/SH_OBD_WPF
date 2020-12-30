@@ -20,6 +20,8 @@ namespace SH_OBD_WPF {
     public partial class AdvancedWindow : Window {
         public AdvancedWindow(OBDIfEx _obdIfEx, OBDTest _obdTest) {
             InitializeComponent();
+            tabView.Content = new DataViewUC(_obdIfEx, _obdTest);
+            tabCheck.Content = new CheckUC(_obdTest.DbLocal, _obdIfEx.Log);
         }
     }
 }

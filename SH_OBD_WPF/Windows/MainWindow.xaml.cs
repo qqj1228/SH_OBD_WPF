@@ -304,7 +304,9 @@ namespace SH_OBD_WPF {
                 w_Advanced = new AdvancedWindow(_obdIfEx, _obdTest) {
                     Owner = this
                 };
-                w_Advanced.Show();
+                this.Hide();
+                w_Advanced.ShowDialog();
+                this.Show();
             } else if (_obdTest.AccessAdvancedMode < 0) {
                 HandyControl.Controls.MessageBox.Error("密码错误！", "拒绝访问");
                 txtBoxVIN.Focus();
@@ -334,7 +336,7 @@ namespace SH_OBD_WPF {
         }
 
         private void TxtBox_PreviewTextInput(object sender, TextCompositionEventArgs e) {
-            if (e.Text.Contains("\n")) {
+            if (e.Text.Contains("\r")) { // 按下回车后WPF TextBox的TextInput事件传入的Text参数为'\r'而不是通常的'\n'
                 if (!_bCanOBDTest) {
                     txtBoxVIN.SelectAll();
                     HandyControl.Controls.MessageBox.Warning("上一辆车还未完全结束检测过程，请稍后再试", "OBD检测出错");

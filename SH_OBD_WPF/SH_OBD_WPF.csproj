@@ -155,11 +155,25 @@
     <Compile Include="Windows\AdvancedWindow.xaml.cs">
       <DependentUpon>AdvancedWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\CheckUC.xaml.cs">
+      <DependentUpon>CheckUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DataViewUC.xaml.cs">
+      <DependentUpon>DataViewUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PwdWindow.xaml.cs">
       <DependentUpon>PwdWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Settings.cs" />
     <Page Include="Windows\AdvancedWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CheckUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DataViewUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:SH_OBD_WPF"
         mc:Ignorable="d"
-        Title="高级模式" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+        Title="高级模式" Height="600" Width="800" WindowStartupLocation="CenterOwner" FontSize="20" ResizeMode="CanResizeWithGrip">
     <Grid>
-        
+        <TabControl Style="{StaticResource TabControlInLine}" Background="#FFB9D9FF">
+            <TabItem x:Name="tabView" Header="数据查看"/>
+            <TabItem x:Name="tabCheck" Header="CALID/CVN 维护"/>
+        </TabControl>
     </Grid>
 </Window>
