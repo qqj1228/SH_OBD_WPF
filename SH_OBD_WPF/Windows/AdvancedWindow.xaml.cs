@@ -1,4 +1,5 @@
-﻿using SH_OBD_Main;
+﻿using SH_OBD_DLL;
+using SH_OBD_Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace SH_OBD_WPF {
     public partial class AdvancedWindow : Window {
         public AdvancedWindow(OBDIfEx _obdIfEx, OBDTest _obdTest) {
             InitializeComponent();
+            Title += " Ver(Main/Dll): " + MainFileVersion.AssemblyVersion + "/" + DllVersion<SH_OBD_Dll>.AssemblyVersion;
             tabView.Content = new DataViewUC(_obdIfEx, _obdTest);
             tabCheck.Content = new CheckUC(_obdTest.DbLocal, _obdIfEx.Log);
         }
