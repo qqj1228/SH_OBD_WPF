@@ -651,6 +651,7 @@ namespace SH_OBD_Main {
 
             try {
                 ExportResultFile(dt);
+                ExportXmlResult(dt);
             } catch (Exception ex) {
                 _obdIfEx.Log.TraceError("Exporting OBD test result file failed: " + ex.Message);
                 dt.Dispose();
@@ -1204,6 +1205,15 @@ namespace SH_OBD_Main {
                 FileInfo exportFileInfo = new FileInfo(ExportPath);
                 File.WriteAllBytes(exportFileInfo.FullName, bin);
             }
+        }
+
+        private void ExportXmlResult(DataTable dt) {
+            string ExportPath = ".\\XmlResult\\" + DateTime.Now.ToLocalTime().ToString("yyyy-MM");
+            if (!Directory.Exists(ExportPath)) {
+                Directory.CreateDirectory(ExportPath);
+            }
+            ExportPath += "\\" + StrVIN_IN + "_" + DateTime.Now.ToLocalTime().ToString("yyyyMMdd-HHmmss") + ".xml";
+            dt.WriteXml(ExportPath, XmlWriteMode.WriteSchema, true);
         }
 
         private void SetCellErrorStyle(ExcelRange cell) {
